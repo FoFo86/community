@@ -43,7 +43,9 @@ public class AuthorizeController {
         accessTokenDTO.setCode(code);
         accessTokenDTO.setState(state);
         accessTokenDTO.setRedirect_uri(RedirectUri);
+        //获取Token
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        //通过token拿到User对象
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if (githubUser != null && githubUser.getId() != null) {
             User user = new User();

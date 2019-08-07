@@ -24,12 +24,6 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-
         <!--devtools热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -38,11 +32,13 @@
             <scope>true</scope>
         </dependency>
 
+        <!--引入spring-boot集成Thymeleaf模板的jar包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+        <!--引入spring-boot集成JDBC的jar包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -54,12 +50,16 @@
             <scope>test</scope>
         </dependency>
 
+        <!--引入okhttp依赖的jar包-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>3.14.1</version>
         </dependency>
 
+        <!--引入fastjson依赖的jar包，
+            用于将Java Bean序列化为JSON字符串，
+            也可以从JSON字符串反序列化到JavaBean-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -72,19 +72,21 @@
             <version>5.1.47</version>
         </dependency>
 
+        <!--引入spring-boot整合mybatis的jar包-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.0</version>
         </dependency>
 
+        <!--引入h2数据库依赖的jar包-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.199</version>
         </dependency>
 
-        <!--引入lombok依赖-->
+        <!--引入lombok依赖的jar包-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -100,9 +102,10 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <fork>true</fork>
+                    <fork>true</fork>   <!--不配置这一行devtools无效-->
                 </configuration>
             </plugin>
+            <!--将Flyway和H2数据库集成，以便它可以成功连接到H2-->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
