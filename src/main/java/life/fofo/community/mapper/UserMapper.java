@@ -1,6 +1,6 @@
-package life.majiang.community.mapper;
+package life.fofo.community.mapper;
 
-import life.majiang.community.model.User;
+import life.fofo.community.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -1,6 +1,6 @@
-package life.majiang.community.dto;
+package life.fofo.community.dto;
 
-import life.majiang.community.model.User;
+import life.fofo.community.model.User;
 import lombok.Data;
 
 @Data

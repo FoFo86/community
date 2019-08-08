@@ -1,9 +1,9 @@
-package life.majiang.community.controller;
+package life.fofo.community.controller;
 
-import life.majiang.community.mapper.QuestionMapper;
-import life.majiang.community.mapper.UserMapper;
-import life.majiang.community.model.Question;
-import life.majiang.community.model.User;
+import life.fofo.community.model.Question;
+import life.fofo.community.mapper.QuestionMapper;
+import life.fofo.community.mapper.UserMapper;
+import life.fofo.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

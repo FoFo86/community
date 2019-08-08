@@ -29,7 +29,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-            <scope>true</scope>
         </dependency>
 
         <!--引入spring-boot集成Thymeleaf模板的jar包-->
@@ -101,9 +100,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork>   <!--不配置这一行devtools无效-->
-                </configuration>
             </plugin>
             <!--将Flyway和H2数据库集成，以便它可以成功连接到H2-->
             <plugin>
