@@ -32,14 +32,9 @@ public class UserService {
             updateUser.setAvatarUrl(user.getAvatarUrl());
             updateUser.setName(user.getName());
             updateUser.setToken(user.getToken());
-            System.out.println(System.currentTimeMillis());
-            System.out.println(user.getAvatarUrl());
-            System.out.println(user.getName());
-            System.out.println(user.getToken());
             UserExample example = new UserExample();
             example.createCriteria()
                     .andIdEqualTo(dbUser.getId());
-            System.out.println(dbUser.getId());
             userMapper.updateByExampleSelective(updateUser, example);
         }
     }
