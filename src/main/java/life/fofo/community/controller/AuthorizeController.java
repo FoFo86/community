@@ -2,7 +2,6 @@ package life.fofo.community.controller;
 
 import life.fofo.community.dto.AccessTokenDTO;
 import life.fofo.community.dto.GithubUser;
-import life.fofo.community.mapper.UserMapper;
 import life.fofo.community.model.User;
 import life.fofo.community.provider.GithubProvider;
 import life.fofo.community.service.UserService;
@@ -32,9 +31,6 @@ public class AuthorizeController {
 
     @Value("${github.redirect.uri}")
     private String RedirectUri;
-
-    @Autowired(required = false)
-    private UserMapper userMapper;
 
     @Autowired
     private UserService userService;
