@@ -14,7 +14,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping(value = "/question/{id}")
-    public String question(Model model, @PathVariable(name = "id") Integer id){
+    public String question(Model model, @PathVariable(name = "id") Long id){
         QuestionDTO questionDTO = questionService.getById(id);
         //累加阅读量
         questionService.incView(id);
