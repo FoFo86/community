@@ -1,7 +1,9 @@
 package life.fofo.community.controller;
 
 import life.fofo.community.dto.CommentCreateDTO;
+import life.fofo.community.dto.CommentDTO;
 import life.fofo.community.dto.ResultDTO;
+import life.fofo.community.enums.CommentTypeEnum;
 import life.fofo.community.exception.CustomizeErrorCode;
 import life.fofo.community.model.Comment;
 import life.fofo.community.model.User;
@@ -9,12 +11,10 @@ import life.fofo.community.service.CommentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class commentController {
@@ -42,5 +42,12 @@ public class commentController {
         comment.setLikeCount(0L);
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id) {
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT);
+        return ResultDTO.okOf(commentDTOS);
     }
 }

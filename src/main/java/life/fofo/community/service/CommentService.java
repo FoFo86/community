@@ -4,10 +4,7 @@ import life.fofo.community.dto.CommentDTO;
 import life.fofo.community.enums.CommentTypeEnum;
 import life.fofo.community.exception.CustomizeErrorCode;
 import life.fofo.community.exception.CustomizeException;
-import life.fofo.community.mapper.CommentMapper;
-import life.fofo.community.mapper.QuestionExtMapper;
-import life.fofo.community.mapper.QuestionMapper;
-import life.fofo.community.mapper.UserMapper;
+import life.fofo.community.mapper.*;
 import life.fofo.community.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +36,10 @@ public class CommentService {
     private UserMapper userMapper;
 
 
-    /*@Autowired
+    @Autowired
     private CommentExtMapper commentExtMapper;
 
-    @Autowired
+    /*@Autowired
     private NotificationMapper notificationMapper;*/
 
     @Transactional
@@ -60,6 +57,12 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }
             commentMapper.insert(comment);
+
+            // 增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
         }else {
             // 回复评论
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
@@ -73,18 +76,22 @@ public class CommentService {
     }
 
 
-    public List<CommentDTO> listByQuestionId(Long id) {
+    public List<CommentDTO> listByTargetId(Long id, CommentTypeEnum type) {
         CommentExample commentExample = new CommentExample();
         commentExample.createCriteria()
                 .andParentIdEqualTo(id)
-                .andTypeEqualTo(CommentTypeEnum.QUESTION.getType());
+                .andTypeEqualTo(type.getType());
         commentExample.setOrderByClause("gmt_create desc");
         List<Comment> comments = commentMapper.selectByExample(commentExample);
 
+        //如果commemts为空，则返回一个空集合
         if (comments.size() == 0) {
             return new ArrayList<>();
         }
-
+        /**
+         * comment -> comment.getCommentator()).collect(Collectors.toSet()
+         * comment对象返回一个comment.getCommentator()的结果集，并将结果集转为set集合
+         */
         // 获取去重的评论人
         Set<Long> commentators = comments.stream().map(comment -> comment.getCommentator()).collect(Collectors.toSet());
         List<Long> userIds = new ArrayList();
@@ -108,6 +115,8 @@ public class CommentService {
 
         return commentDTOS;
     }
+
+
    /* @Transactional
     public void insert(Comment comment, User commentator) {
         if (comment.getParentId() == null || comment.getParentId() == 0) {

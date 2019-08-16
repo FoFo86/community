@@ -1,10 +1,11 @@
 package life.fofo.community.mapper;
 
-import java.util.List;
 import life.fofo.community.model.User;
 import life.fofo.community.model.UserExample;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface UserMapper {
     /**

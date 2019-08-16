@@ -17,10 +17,13 @@ import java.io.PrintWriter;
 
 /**
  * Created by codedrinker on 2019/5/28.
+ * 加强Controller做全局异常处理
+ * 捕获所有Controller中抛出的异常
  */
 @ControllerAdvice
 @Slf4j
 public class CustomizeExceptionHandler {
+    //处理全部异常
     @ExceptionHandler(Exception.class)
     ModelAndView handle(Throwable e, Model model, HttpServletRequest request, HttpServletResponse response) {
         String contentType = request.getContentType();

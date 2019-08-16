@@ -52,6 +52,7 @@ public class QuestionService {
 
         paginationDTO.setPagination(totalPage,page);
 
+        //跳过多少条数据
         Integer offset = size * (page - 1);
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
         List<QuestionDTO> questionDTOList = new ArrayList<>();
@@ -81,8 +82,6 @@ public class QuestionService {
         }else {
             totalPage = totalCount / size + 1 ;
         }
-
-
 
         if (page < 1) {
             page = 1;
