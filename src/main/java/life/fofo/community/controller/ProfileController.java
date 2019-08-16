@@ -26,7 +26,6 @@ public class ProfileController {
         if (user == null){
             return "redirect:/";
         }
-
         if ("questions".equals(action)){
             model.addAttribute("section", "questions");
             model.addAttribute("sectionName", "我的提问");
