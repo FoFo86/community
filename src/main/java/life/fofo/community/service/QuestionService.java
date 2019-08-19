@@ -70,7 +70,7 @@ public class QuestionService {
             queryDtoList.add(queryDto);
         }
 
-        paginationDTO.setQuestions(queryDtoList);
+        paginationDTO.setData(queryDtoList);
         return paginationDTO;
     }
 
@@ -112,7 +112,7 @@ public class QuestionService {
             queryDtoList.add(queryDto);
         }
 
-        paginationDTO.setQuestions(queryDtoList);
+        paginationDTO.setData(queryDtoList);
         return paginationDTO;
     }
 

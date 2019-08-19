@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class PaginationDTO<T> {
-    private List<QuestionDTO> questions;
+    private List<T> data;
     /**
      * 前一页
      */
